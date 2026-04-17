@@ -1,13 +1,26 @@
 public class ReverseInteger {
 
-    public static int Solution(int nums) {
-        int len = (Integer.toString(Math.abs(nums))).length();
+    public static int Solution(int x) {
         int reverse = 0;
-        for (int i = 0; i < len; i++) {
-            reverse += ((nums / (int) Math.pow(10, i)) % 10) * (int) Math.pow(10, len - 1 - i);
+
+        while (x != 0) {
+            int digit = x % 10;
+
+            // check trước khi nhân 10
+            if (reverse > Integer.MAX_VALUE / 10 ||
+                    (reverse == Integer.MAX_VALUE / 10 && digit > 7)) {
+                return 0;
+            }
+
+            if (reverse < Integer.MIN_VALUE / 10 ||
+                    (reverse == Integer.MIN_VALUE / 10 && digit < -8)) {
+                return 0;
+            }
+
+            reverse = reverse * 10 + digit;
+            x /= 10;
         }
-        if (reverse > Integer.MAX_VALUE)
-            return 0;
+
         return reverse;
     }
 
