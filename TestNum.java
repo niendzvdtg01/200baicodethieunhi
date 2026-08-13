@@ -7,5 +7,6 @@ public class TestNum {
             sum += 0.1;
         System.out.println(sum);
         System.out.println(sum == 1);
+        System.out.println(Double.compare(1, sum));
     }
 }
